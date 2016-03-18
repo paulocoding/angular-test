@@ -1,1 +1,1 @@
-# angular-test
+# A simple angular app for client orders management
