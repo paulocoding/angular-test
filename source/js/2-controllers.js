@@ -1,6 +1,3 @@
-angular.module("ordersApp", []);
-
-
 var OrdersListController = function($scope){
   $scope.orders = [
     { orderNo: 1101, productName: "Clock A45", client: "C101", date: "23-12-2015"},

@@ -22,11 +22,27 @@
 
     <div class="container">
 			<div class="page-header">
-			  <h1>Angular app</h1>
+			  <h1>AweSome Store</h1>
 			</div>
 
-			<section ng-app>
-				{{ 2+2 }}
+			<section ng-app="ordersApp">
+				<div ng-controller="OrdersListController">
+					<h2>Orders</h2>
+					<table class="table">
+						<tr>
+							<th>Order No</th>
+							<th>Product</th>
+							<th>Client</th>
+							<th>Date</th>
+						</tr>
+						<tr ng-repeat="order in orders" class="zebra">
+							<td>{{ order.orderNo }}</td>
+							<td>{{ order.productName }}</td>
+							<td>{{ order.client }}</td>
+							<td>{{ order.date }}</td>
+						</tr>
+					</table>
+				</div>
 			</section>
 
     </div><!-- /.container -->
