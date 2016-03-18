@@ -1,1 +1,1 @@
-# A simple angular app for client orders management
+# angular based app for client - orders management
