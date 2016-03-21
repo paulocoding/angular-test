@@ -25,8 +25,14 @@
 			  <h1>ASome Store</h1>
 			</div>
 
+
 			<section ng-app="ordersApp">
 				<div ng-controller="OrdersListController">
+
+          <div class="form-group">
+            <label for="search">Search</label>
+            <input type="text" class="form-control" id="search" placeholder="Search" ng-model="orderSearch">
+          </div>
 					<h2>Orders</h2>
 					<table class="table orders">
 						<tr>
@@ -36,7 +42,7 @@
 							<th>Date</th>
 							<th>Dispatched</th>
 						</tr>
-						<tr ng-repeat="order in orders" class="zebra" ng-class="order.sent? 'bg-success':''">
+						<tr ng-repeat="order in orders| filter:orderSearch" class="zebra" ng-class="order.sent? 'bg-success':''">
 							<td>{{ order.orderNo }}</td>
 							<td>{{ order.productName }}</td>
 							<td>{{ order.client }}</td>
