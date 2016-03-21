@@ -5,3 +5,16 @@ body {
 .zebra:nth-child(even){
   background-color: #eee;
 }
+
+.zebra:nth-child(even).bg-success{
+  background-color: #d7e8d0;
+}
+
+table.orders tr td{
+  vertical-align: middle;
+  height: 51px;
+}
+.small-btn{
+  margin: 0;
+  padding: 4px 8px;
+}
