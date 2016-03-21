@@ -5,5 +5,14 @@ angular.module('ordersApp').config(function($routeProvider){
     {
       controller: 'OrdersListController',
       templateUrl: '/app/views/orders.html'
+    })
+    .when('/customer/:customerID',
+    {
+      controller: 'customerController',
+      templateUrl: '/app/views/customer.html'
+    })
+    .otherwise(
+    {
+      redirectTo: '/'
     });
 });
