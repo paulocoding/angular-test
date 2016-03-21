@@ -1,4 +1,12 @@
-angular.module("ordersApp", []);
+angular.module('ordersApp', ['ngRoute']);
+angular.module('ordersApp').config(function($routeProvider){
+  $routeProvider
+    .when('/',
+    {
+      controller: 'OrdersListController',
+      templateUrl: '/app/views/orders.html'
+    });
+});
 
 (function(){
 	//
@@ -13,7 +21,7 @@ angular.module("ordersApp", []);
 	    { orderNo: 1105, productName: 'Book B12345', client: 'C104', date: '10-12-2015', sent: false},
 	    { orderNo: 1106, productName: 'Phone B14', client: 'C101', date: '11-12-2015', sent: true},
 	    { orderNo: 1107, productName: 'Book B12345', client: 'C104', date: '14-12-2015', sent: true},
-	    { orderNo: 1108, productName: 'Book B12345', client: 'C103', date: '20-12-2015', sent: true},
+	    { orderNo: 1108, productName: 'Book B12345', client: 'C103', date: '20-12-2015', sent: false},
 	    { orderNo: 1109, productName: 'Phone B14', client: 'C105', date: '21-12-2015', sent: true},
 	    { orderNo: 1110, productName: 'Book B12345', client: 'C102', date: '26-12-2015', sent: true}
 	  ];

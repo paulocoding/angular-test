@@ -25,35 +25,9 @@
 			  <h1>ASome Store</h1>
 			</div>
 
-
 			<section ng-app="ordersApp">
-				<div ng-controller="OrdersListController">
-
-          <div class="form-group">
-            <label for="search">Search</label>
-            <input type="text" class="form-control" id="search" placeholder="Search" ng-model="orderSearch">
-          </div>
-					<h2>Orders</h2>
-					<table class="table orders">
-						<tr>
-							<th>Order No</th>
-							<th>Product</th>
-							<th>Client</th>
-							<th>Date</th>
-							<th>Dispatched</th>
-						</tr>
-						<tr ng-repeat="order in orders| filter:orderSearch" class="zebra" ng-class="order.sent? 'bg-success':''">
-							<td>{{ order.orderNo }}</td>
-							<td>{{ order.productName }}</td>
-							<td>{{ order.client }}</td>
-							<td>{{ order.date }}</td>
-							<td>
-                <a ng-click="sendOrder(order)" class="btn btn-warning small-btn" ng-hide="order.sent">Mark as Dispatched</a>
-                <span ng-show="order.sent">Dispatched</span>
-              </td>
-						</tr>
-					</table>
-				</div>
+				<ng-view>
+				</ng-view>
 			</section>
 
     </div><!-- /.container -->
@@ -66,6 +40,7 @@
     <script>window.jQuery || document.write('<script src="assets/js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
     <script src="assets/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="assets/js/vendor/angular.min.js"></script>
+		<script type="text/javascript" src="assets/js/vendor/angular-route.js"></script>
 
 		<!-- importing javascript -->
 		<script type="text/javascript" src="assets/js/bundle.js"></script>
