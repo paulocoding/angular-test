@@ -11,6 +11,11 @@ angular.module('ordersApp').config(function($routeProvider){
       controller: 'customerController',
       templateUrl: '/app/views/customer.html'
     })
+    .when('/product/:productID',
+    {
+      controller: 'productController',
+      templateUrl: '/app/views/product.html'
+    })
     .otherwise(
     {
       redirectTo: '/'

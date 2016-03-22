@@ -14,7 +14,7 @@
     </tr>
     <tr ng-repeat="order in orders| filter:orderSearch" class="zebra" ng-class="order.sent? 'bg-success':''">
       <td>{{ order.orderNo }}</td>
-      <td>{{ order.productName }}</td>
+      <td><a href="#/product/{{order.productID}}">{{ order.productID }}</a></td>
       <td><a href="#/customer/{{ order.customer }}">{{ order.customer }}</a></td>
       <td>{{ order.date }}</td>
       <td>
