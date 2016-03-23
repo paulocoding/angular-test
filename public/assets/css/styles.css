@@ -25,3 +25,13 @@ table.orders tr td {
 
 .well.well-light {
   background-color: #fff; }
+
+@media screen and (max-width: 991px) {
+  .order-btn {
+    margin-top: 5px;
+    margin-left: 0; } }
+
+@media screen and (max-width: 767px) {
+  .pad-left {
+    margin-left: 0;
+    margin-top: 20px; } }
