@@ -14,3 +14,14 @@ table.orders tr td {
 .small-btn {
   margin: 0;
   padding: 4px 8px; }
+
+.order-btn {
+  margin-top: 25px;
+  margin-left: 35px;
+  font-size: 1.1em; }
+
+.pad-left {
+  margin-left: 35px; }
+
+.well.well-light {
+  background-color: #fff; }

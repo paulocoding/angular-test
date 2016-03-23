@@ -9,21 +9,40 @@
 		//
 
 		var orders = [
-	    { orderNo: 1101, productID: 'A45', customer: 'C101', date: '23-12-2015', sent: false},
-	    { orderNo: 1102, productID: 'A32', customer: 'C102', date: '22-12-2015', sent: true},
-	    { orderNo: 1103, productID: 'B12345', customer: 'C105', date: '13-12-2015', sent: false},
-	    { orderNo: 1104, productID: 'E2315', customer: 'C102', date: '02-12-2015', sent: false},
-	    { orderNo: 1105, productID: 'B12345', customer: 'C104', date: '10-12-2015', sent: false},
-	    { orderNo: 1106, productID: 'B14', customer: 'C101', date: '11-12-2015', sent: true},
-	    { orderNo: 1107, productID: 'B12345', customer: 'C104', date: '14-12-2015', sent: true},
-	    { orderNo: 1108, productID: 'B12345', customer: 'C103', date: '20-12-2015', sent: false},
-	    { orderNo: 1109, productID: 'B14', customer: 'C105', date: '21-12-2015', sent: true},
-	    { orderNo: 1110, productID: 'B12345', customer: 'C102', date: '26-12-2015', sent: true}
+	    { orderNo: 1101, productID: 'A45', quantity: 1, customer: 'C101', date: '23-12-2015', sent: true},
+	    { orderNo: 1102, productID: 'A32', quantity: 1, customer: 'C102', date: '22-12-2015', sent: true},
+	    { orderNo: 1103, productID: 'B12345', quantity: 2, customer: 'C105', date: '13-12-2015', sent: false},
+	    { orderNo: 1104, productID: 'E2315', quantity: 3, customer: 'C102', date: '02-12-2015', sent: false},
+	    { orderNo: 1105, productID: 'B12345', quantity: 1, customer: 'C104', date: '10-12-2015', sent: false},
+	    { orderNo: 1106, productID: 'B14', quantity: 1, customer: 'C101', date: '11-12-2015', sent: true},
+	    { orderNo: 1107, productID: 'B12345', quantity: 1, customer: 'C104', date: '14-12-2015', sent: true},
+	    { orderNo: 1108, productID: 'B12345', quantity: 1, customer: 'C103', date: '20-12-2015', sent: false},
+	    { orderNo: 1109, productID: 'B14', quantity: 1, customer: 'C105', date: '21-12-2015', sent: true},
+	    { orderNo: 1110, productID: 'B12345', quantity: 1, customer: 'C102', date: '26-12-2015', sent: false}
 	  ];
+		var nextOrderNo = 1111;
 		var factory = {};
 		factory.getOrders = function(){
 			return orders;
 		};
+
+		factory.getNextOrderNo = function(){
+			return nextOrderNo;
+		};
+
+		factory.addOrder = function (productID, quantity, customerID) {
+			var newOrder = {};
+			newOrder.orderNo = nextOrderNo;
+			nextOrderNo++;
+			newOrder.productID = productID;
+			newOrder.quantity = quantity;
+			newOrder.customer = customerID;
+			var today = new Date();
+			newOrder.date = today.getDate() + '-'+  today.getMonth() + '-' + (today.getYear() + 1900);
+			newOrder.sent = false;
+			orders.push(newOrder);
+		};
+
 		return factory;
 	};
 	angular.module('ordersApp').factory('ordersFactory', ordersFactory);

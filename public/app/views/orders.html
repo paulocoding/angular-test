@@ -1,20 +1,25 @@
 <div>
-  <div class="form-group">
+  <div class="form-group col-md-8">
     <label for="search">Search</label>
     <input type="text" class="form-control" id="search" placeholder="Search" ng-model="orderSearch">
   </div>
-  <h2>Orders</h2>
+  <div class="col-md-4"><a href="#/new-order/" class="btn btn-success order-btn">New Order</a></div>
+  <div class="col-md-12">
+    <h2>Orders</h2>
+  </div>
   <table class="table orders">
     <tr>
       <th>Order No</th>
       <th>Product</th>
+      <th>Quantity</th>
       <th>Customer</th>
       <th>Date</th>
       <th>Dispatched</th>
     </tr>
-    <tr ng-repeat="order in orders| filter:orderSearch" class="zebra" ng-class="order.sent? 'bg-success':''">
+    <tr ng-repeat="order in orders| filter:orderSearch | orderBy:'orderNo':true" class="zebra" ng-class="order.sent? 'bg-success':''">
       <td>{{ order.orderNo }}</td>
       <td><a href="#/product/{{order.productID}}">{{ order.productID }}</a></td>
+      <td>{{ order.quantity }}</td>
       <td><a href="#/customer/{{ order.customer }}">{{ order.customer }}</a></td>
       <td>{{ order.date }}</td>
       <td>
