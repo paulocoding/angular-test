@@ -35,6 +35,9 @@
       if (isNaN(parseFloat($scope.quantity)) || !isFinite($scope.quantity) || $scope.quantity< 0 || $scope.quantity>20) {
         $scope.warnings.push('Quantity must be between 1 and 20.');
         valid = false;
+      } else if(productsFactory.getProduct($scope.productID).stock<$scope.quantity){
+        $scope.warnings.push('We don\'t have that much stock. Currently we have '+ productsFactory.getProduct($scope.productID).stock +' units in stock.');
+        valid = false;
       }
       if (!customersFactory.getCustomer($scope.customerID)) {
         $scope.warnings.push('Please select a valid Customer.');
@@ -42,6 +45,7 @@
       }
       if(valid) {
         ordersFactory.addOrder($scope.productID, $scope.quantity, $scope.customerID);
+        productsFactory.getProduct($scope.productID).stock-=$scope.quantity;
         $location.path('/');
       }
     };

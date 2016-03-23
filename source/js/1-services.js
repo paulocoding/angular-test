@@ -15,7 +15,7 @@
 	    { orderNo: 1104, productID: 'E2315', quantity: 3, customer: 'C102', date: '02-12-2015', sent: false},
 	    { orderNo: 1105, productID: 'B12345', quantity: 1, customer: 'C104', date: '10-12-2015', sent: false},
 	    { orderNo: 1106, productID: 'B14', quantity: 1, customer: 'C101', date: '11-12-2015', sent: true},
-	    { orderNo: 1107, productID: 'B12345', quantity: 1, customer: 'C104', date: '14-12-2015', sent: true},
+	    { orderNo: 1107, productID: 'A45', quantity: 1, customer: 'C104', date: '14-12-2015', sent: true},
 	    { orderNo: 1108, productID: 'B12345', quantity: 1, customer: 'C103', date: '20-12-2015', sent: false},
 	    { orderNo: 1109, productID: 'B14', quantity: 1, customer: 'C105', date: '21-12-2015', sent: true},
 	    { orderNo: 1110, productID: 'B12345', quantity: 1, customer: 'C102', date: '26-12-2015', sent: false}
