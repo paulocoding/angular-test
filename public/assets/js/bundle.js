@@ -21,6 +21,16 @@ angular.module('ordersApp').config(function($routeProvider){
       controller: 'newOrderController',
       templateUrl: '/app/views/new-order.html'
     })
+    .when('/customers/',
+    {
+      controller: 'customersListController',
+      templateUrl: '/app/views/customers.html'
+    })
+    .when('/products/',
+    {
+      controller: 'productsListController',
+      templateUrl: '/app/views/products.html'
+    })
     .otherwise(
     {
       redirectTo: '/'
@@ -155,7 +165,7 @@ angular.module('ordersApp').config(function($routeProvider){
     $scope.menuActive = [true, false, false];
     $scope.menu = function(item){
       $scope.menuActive = [false, false, false];
-      $scope.menuActive[item]=true;  
+      $scope.menuActive[item]=true;
     };
 
   };
@@ -238,5 +248,23 @@ angular.module('ordersApp').config(function($routeProvider){
   productController.$inject = ['$scope', '$routeParams','productsFactory'];
   angular.module('ordersApp').controller('productController', productController);
 
+  //
+  //  Customers View Controller
+  //
+  var customersListController = function($scope, customersFactory){
+
+  };
+  customersListController.$inject = ['$scope', 'customersFactory'];
+  angular.module('ordersApp').controller('customersListController', customersListController);
+
+
+  //
+  //  Products View Controller
+  //
+  var productsListController = function($scope, productsFactory){
+
+  };
+  productsListController.$inject = ['$scope', 'productsFactory'];
+  angular.module('ordersApp').controller('productsListController', productsListController);
 
 }());

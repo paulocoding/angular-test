@@ -6,7 +6,7 @@
     $scope.menuActive = [true, false, false];
     $scope.menu = function(item){
       $scope.menuActive = [false, false, false];
-      $scope.menuActive[item]=true;  
+      $scope.menuActive[item]=true;
     };
 
   };
@@ -89,5 +89,23 @@
   productController.$inject = ['$scope', '$routeParams','productsFactory'];
   angular.module('ordersApp').controller('productController', productController);
 
+  //
+  //  Customers View Controller
+  //
+  var customersListController = function($scope, customersFactory){
+
+  };
+  customersListController.$inject = ['$scope', 'customersFactory'];
+  angular.module('ordersApp').controller('customersListController', customersListController);
+
+
+  //
+  //  Products View Controller
+  //
+  var productsListController = function($scope, productsFactory){
+
+  };
+  productsListController.$inject = ['$scope', 'productsFactory'];
+  angular.module('ordersApp').controller('productsListController', productsListController);
 
 }());
