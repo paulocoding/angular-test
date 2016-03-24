@@ -20,17 +20,38 @@
 
   <body>
 
-    <div class="container">
-			<div class="page-header">
-			  <h1>ASome Store</h1>
-			</div>
+		<section ng-app="ordersApp">
+      <nav class="navbar navbar-default navbar-fixed-top" ng-controller="navController">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">ASome Store</a>
+          </div>
 
-			<section ng-app="ordersApp">
-				<ng-view>
-				</ng-view>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li ng-class="{'active':menuActive[0]}"><a href="#/"            ng-click="menu(0)">Orders</a></li>
+              <li ng-class="{'active':menuActive[1]}"><a href="#/customers"   ng-click="menu(1)">Customers</a></li>
+              <li ng-class="{'active':menuActive[2]}"><a href="#/products"    ng-click="menu(2)">Products</a></li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+
+        <div class="container">
+          <!-- Angular Views -->
+  				<ng-view>
+  				</ng-view>
+        </div><!-- /.container -->
 			</section>
 
-    </div><!-- /.container -->
 
 
     <!-- Bootstrap core JavaScript

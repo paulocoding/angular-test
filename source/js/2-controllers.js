@@ -1,5 +1,19 @@
 (function(){
   //
+  //  Navigation controller
+  //
+  var navController = function($scope){
+    $scope.menuActive = [true, false, false];
+    $scope.menu = function(item){
+      $scope.menuActive = [false, false, false];
+      $scope.menuActive[item]=true;  
+    };
+
+  };
+  navController.$inject =['$scope'];
+  angular.module('ordersApp').controller('navController',navController);
+
+  //
   //  Orders list view controller
   //
   var OrdersListController = function($scope, ordersFactory){
