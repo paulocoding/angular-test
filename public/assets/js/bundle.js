@@ -262,7 +262,7 @@ angular.module('ordersApp').config(function($routeProvider){
   //  Products View Controller
   //
   var productsListController = function($scope, productsFactory){
-
+    $scope.products = productsFactory.getProducts();
   };
   productsListController.$inject = ['$scope', 'productsFactory'];
   angular.module('ordersApp').controller('productsListController', productsListController);
