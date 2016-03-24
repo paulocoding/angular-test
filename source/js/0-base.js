@@ -16,11 +16,6 @@ angular.module('ordersApp').config(function($routeProvider){
       controller: 'productController',
       templateUrl: '/app/views/product.html'
     })
-    .when('/new-order/',
-    {
-      controller: 'newOrderController',
-      templateUrl: '/app/views/new-order.html'
-    })
     .when('/customers/',
     {
       controller: 'customersListController',
@@ -30,6 +25,21 @@ angular.module('ordersApp').config(function($routeProvider){
     {
       controller: 'productsListController',
       templateUrl: '/app/views/products.html'
+    })
+    .when('/new-order/',
+    {
+      controller: 'newOrderController',
+      templateUrl: '/app/views/new-order.html'
+    })
+    .when('/new-customer/',
+    {
+      controller: 'newCustomerController',
+      templateUrl: '/app/views/new-customer.html'
+    })
+    .when('/new-product/',
+    {
+      controller: 'newProductController',
+      templateUrl: '/app/views/new-product.html'
     })
     .otherwise(
     {

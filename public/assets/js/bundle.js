@@ -16,11 +16,6 @@ angular.module('ordersApp').config(function($routeProvider){
       controller: 'productController',
       templateUrl: '/app/views/product.html'
     })
-    .when('/new-order/',
-    {
-      controller: 'newOrderController',
-      templateUrl: '/app/views/new-order.html'
-    })
     .when('/customers/',
     {
       controller: 'customersListController',
@@ -30,6 +25,21 @@ angular.module('ordersApp').config(function($routeProvider){
     {
       controller: 'productsListController',
       templateUrl: '/app/views/products.html'
+    })
+    .when('/new-order/',
+    {
+      controller: 'newOrderController',
+      templateUrl: '/app/views/new-order.html'
+    })
+    .when('/new-customer/',
+    {
+      controller: 'newCustomerController',
+      templateUrl: '/app/views/new-customer.html'
+    })
+    .when('/new-product/',
+    {
+      controller: 'newProductController',
+      templateUrl: '/app/views/new-product.html'
     })
     .otherwise(
     {
@@ -94,6 +104,7 @@ angular.module('ordersApp').config(function($routeProvider){
 		//
 		// Would be replaced with an http request on a live app
 		//
+		var nextID = 106;
 
 		var customers = [
 			{id: 'C101', name: 'John Doe', address:'132 South Road, Dublin'},
@@ -114,6 +125,17 @@ angular.module('ordersApp').config(function($routeProvider){
 				}
 			}
 			return false;
+		};
+		factory.newCustomer = function(name, address){
+			var newCust = {};
+			newCust.id = 'C'+nextID;
+			nextID++;
+			newCust.name = name;
+			newCust.address = address;
+			customers.push(newCust);
+		};
+		factory.nextID = function(){
+			return 'C'+nextID;
 		};
 		return factory;
 	};
@@ -184,6 +206,45 @@ angular.module('ordersApp').config(function($routeProvider){
   OrdersListController.$inject = ['$scope', 'ordersFactory'];
   angular.module('ordersApp').controller('OrdersListController',OrdersListController);
 
+  //
+  //  Customer view controller
+  //
+
+  var customerController = function($scope, $routeParams, customersFactory){
+    $scope.customer = customersFactory.getCustomer($routeParams.customerID);
+  };
+  customerController.$inject = ['$scope', '$routeParams','customersFactory'];
+  angular.module('ordersApp').controller('customerController', customerController);
+
+
+  //
+  //  Product view controller
+  //
+
+  var productController = function($scope, $routeParams, productsFactory){
+    $scope.product = productsFactory.getProduct($routeParams.productID);
+  };
+  productController.$inject = ['$scope', '$routeParams','productsFactory'];
+  angular.module('ordersApp').controller('productController', productController);
+
+  //
+  //  Customers View Controller
+  //
+  var customersListController = function($scope, customersFactory){
+    $scope.customers = customersFactory.getCustomers();
+  };
+  customersListController.$inject = ['$scope', 'customersFactory'];
+  angular.module('ordersApp').controller('customersListController', customersListController);
+
+
+  //
+  //  Products View Controller
+  //
+  var productsListController = function($scope, productsFactory){
+    $scope.products = productsFactory.getProducts();
+  };
+  productsListController.$inject = ['$scope', 'productsFactory'];
+  angular.module('ordersApp').controller('productsListController', productsListController);
 
   //
   //  New Order controller
@@ -226,45 +287,31 @@ angular.module('ordersApp').config(function($routeProvider){
   newOrderController.$inject = ['$scope', 'productsFactory','customersFactory', 'ordersFactory', '$location'];
   angular.module('ordersApp').controller('newOrderController', newOrderController);
 
-
-  //
-  //  Customer view controller
-  //
-
-  var customerController = function($scope, $routeParams, customersFactory){
-    $scope.customer = customersFactory.getCustomer($routeParams.customerID);
+  var newCustomerController = function($scope, customersFactory, $location){
+    $scope.id = customersFactory.nextID();
+    $scope.name = '';
+    $scope.address = '';
+    $scope.warnings = false;
+    $scope.addCustomer = function(){
+      $scope.warnings = [];
+      var valid = true;
+      var name = $scope.name;
+      var address = $scope.address;
+      if(name === ''){
+        valid = false;
+        $scope.warnings.push('Please fill in the Customer\'s name.');
+      }
+      if(address === ''){
+        valid = false;
+        $scope.warnings.push('Please fill in the Customer\'s address.');
+      }
+      if(valid){
+        customersFactory.newCustomer(name, address);
+        $location.path('/customers/');
+      }
+    };
   };
-  customerController.$inject = ['$scope', '$routeParams','customersFactory'];
-  angular.module('ordersApp').controller('customerController', customerController);
-
-
-  //
-  //  Product view controller
-  //
-
-  var productController = function($scope, $routeParams, productsFactory){
-    $scope.product = productsFactory.getProduct($routeParams.productID);
-  };
-  productController.$inject = ['$scope', '$routeParams','productsFactory'];
-  angular.module('ordersApp').controller('productController', productController);
-
-  //
-  //  Customers View Controller
-  //
-  var customersListController = function($scope, customersFactory){
-    $scope.customers = customersFactory.getCustomers();
-  };
-  customersListController.$inject = ['$scope', 'customersFactory'];
-  angular.module('ordersApp').controller('customersListController', customersListController);
-
-
-  //
-  //  Products View Controller
-  //
-  var productsListController = function($scope, productsFactory){
-    $scope.products = productsFactory.getProducts();
-  };
-  productsListController.$inject = ['$scope', 'productsFactory'];
-  angular.module('ordersApp').controller('productsListController', productsListController);
+  newCustomerController.$inject = ['$scope', 'customersFactory', '$location'];
+  angular.module('ordersApp').controller('newCustomerController', newCustomerController);
 
 }());

@@ -55,6 +55,7 @@
 		//
 		// Would be replaced with an http request on a live app
 		//
+		var nextID = 106;
 
 		var customers = [
 			{id: 'C101', name: 'John Doe', address:'132 South Road, Dublin'},
@@ -75,6 +76,17 @@
 				}
 			}
 			return false;
+		};
+		factory.newCustomer = function(name, address){
+			var newCust = {};
+			newCust.id = 'C'+nextID;
+			nextID++;
+			newCust.name = name;
+			newCust.address = address;
+			customers.push(newCust);
+		};
+		factory.nextID = function(){
+			return 'C'+nextID;
 		};
 		return factory;
 	};
