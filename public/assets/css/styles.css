@@ -15,7 +15,7 @@ a.navbar-brand.brand-green {
   a.navbar-brand.brand-green:hover, a.navbar-brand.brand-green:active {
     color: #88BD44; }
 
-table.orders tr td {
+table.spaced tr td {
   vertical-align: middle;
   height: 51px; }
 
