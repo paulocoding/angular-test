@@ -42,6 +42,25 @@
 
   var productController = function($scope, $routeParams, productsFactory){
     $scope.product = productsFactory.getProduct($routeParams.productID);
+    $scope.newStock = 0;
+    $scope.warnings = false;
+    $scope.success = false;
+
+    $scope.addStock = function(){
+      $scope.warnings = [];
+      $scope.success = '';
+      var valid = true;
+      var newStock = $scope.newStock;
+      if (isNaN(parseFloat(newStock)) || !isFinite(newStock) || newStock< 1){
+        $scope.warnings.push('You must add 1 or more units.');
+        valid = false;
+      }
+      if (valid){
+        productsFactory.addStock($scope.product, newStock);
+        $scope.success = newStock+' units added to stock.';
+        $scope.newStock = 0;
+      }
+    };
   };
   productController.$inject = ['$scope', '$routeParams','productsFactory'];
   angular.module('ordersApp').controller('productController', productController);

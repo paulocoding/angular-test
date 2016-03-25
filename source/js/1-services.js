@@ -129,6 +129,10 @@
 			newProd.stock = stock;
 			products.push(newProd);
 		};
+
+		factory.addStock = function(product, units){
+			product.stock += units;
+		};
 		return factory;
 	};
 	angular.module('ordersApp').factory('productsFactory', productsFactory);

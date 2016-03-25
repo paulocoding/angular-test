@@ -39,6 +39,9 @@ table.spaced tr td{
   margin-left: 35px;
 }
 
+.well p{
+  margin-left: 20px;
+}
 .well.well-light{
   background-color: #fff;
 }
@@ -46,12 +49,5 @@ table.spaced tr td{
   .order-btn{
     margin-top: 5px;
     margin-left: 0;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .pad-left{
-    margin-left: 0;
-    margin-top: 20px;
   }
 }
