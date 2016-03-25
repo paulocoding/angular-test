@@ -171,6 +171,13 @@ angular.module('ordersApp').config(function($routeProvider){
 			}
 			return false;
 		};
+		factory.newProduct = function(productID, name, stock){
+			var newProd = {};
+			newProd.id = productID;
+			newProd.name = name;
+			newProd.stock = stock;
+			products.push(newProd);
+		};
 		return factory;
 	};
 	angular.module('ordersApp').factory('productsFactory', productsFactory);
@@ -313,5 +320,43 @@ angular.module('ordersApp').config(function($routeProvider){
   };
   newCustomerController.$inject = ['$scope', 'customersFactory', '$location'];
   angular.module('ordersApp').controller('newCustomerController', newCustomerController);
+
+  var newProductController = function($scope, productsFactory, $location){
+    $scope.productID = '';
+    $scope.name = '';
+    $scope.stock = 1;
+    $scope.warnings = false;
+    $scope.addProduct = function(){
+      $scope.warnings = [];
+      var valid = true;
+      var productID = $scope.productID;
+      var name = $scope.name;
+      var stock = $scope.stock;
+      if(productID === ''){
+        valid = false;
+        $scope.warnings.push('Please fill in the Product ID.');
+      }
+      if(productsFactory.getProduct(productID)){
+        valid = false;
+        $scope.warnings.push('We already have a product with this ID.');
+      }
+      if(name === ''){
+        valid = false;
+        $scope.warnings.push('Please fill in the Product name.');
+      }
+      if (isNaN(parseFloat(stock)) || !isFinite(stock) || stock< 0){
+        $scope.warnings.push('Stock must be 0 or higher.');
+        valid = false;
+      }
+
+      if(valid){
+        productsFactory.newProduct(productID, name, stock);
+        $location.path('/products/');
+      }
+
+    };
+  };
+  newProductController.$inject = ['$scope','productsFactory', '$location'];
+  angular.module('ordersApp').controller('newProductController', newProductController);
 
 }());

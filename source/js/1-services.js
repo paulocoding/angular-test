@@ -122,6 +122,13 @@
 			}
 			return false;
 		};
+		factory.newProduct = function(productID, name, stock){
+			var newProd = {};
+			newProd.id = productID;
+			newProd.name = name;
+			newProd.stock = stock;
+			products.push(newProd);
+		};
 		return factory;
 	};
 	angular.module('ordersApp').factory('productsFactory', productsFactory);
