@@ -16,13 +16,19 @@
   //
   //  Orders list view controller
   //
-  var OrdersListController = function($scope, ordersFactory){
+  var OrdersListController = function($scope, ordersFactory, customersFactory, productsFactory){
     $scope.orders = ordersFactory.getOrders();
+    $scope.getProductName = function(id){
+      return productsFactory.getProduct(id).name;
+    };
+    $scope.getCustomerName = function(id){
+      return customersFactory.getCustomer(id).name;
+    }
     $scope.sendOrder = function(order){
       order.sent = true;
     };
   };
-  OrdersListController.$inject = ['$scope', 'ordersFactory'];
+  OrdersListController.$inject = ['$scope', 'ordersFactory', 'customersFactory', 'productsFactory'];
   angular.module('ordersApp').controller('OrdersListController',OrdersListController);
 
   //

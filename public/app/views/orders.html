@@ -18,9 +18,9 @@
     </tr>
     <tr ng-repeat="order in orders| filter:orderSearch | orderBy:'orderNo':true" class="zebra" ng-class="order.sent? 'bg-success':''">
       <td>{{ order.orderNo }}</td>
-      <td><a href="#/product/{{order.productID}}">{{ order.productID }}</a></td>
+      <td><a href="#/product/{{order.productID}}">{{ order.productID + ' - ' + getProductName(order.productID)}}</a></td>
       <td>{{ order.quantity }}</td>
-      <td><a href="#/customer/{{ order.customer }}">{{ order.customer }}</a></td>
+      <td><a href="#/customer/{{ order.customer }}">{{ order.customer + ' - ' + getCustomerName(order.customer)}}</a></td>
       <td>{{ order.date }}</td>
       <td>
         <a ng-click="sendOrder(order)" class="btn btn-warning small-btn" ng-hide="order.sent">Mark as Dispatched</a>
