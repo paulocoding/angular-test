@@ -209,12 +209,26 @@ angular.module('ordersApp').config(function($routeProvider){
   //  Orders list view controller
   //
   var OrdersListController = function($scope, ordersFactory, customersFactory, productsFactory){
-    $scope.orders = ordersFactory.getOrders();
-    $scope.getProductName = function(id){
+
+    var getProductName = function(id){
       return productsFactory.getProduct(id).name;
     };
-    $scope.getCustomerName = function(id){
+    var getCustomerName = function(id){
       return customersFactory.getCustomer(id).name;
+    };
+
+    var orders = ordersFactory.getOrders();
+    $scope.ordersVM = [];
+    for (var i = 0; i<orders.length; i++){
+      var order = {};
+      for (var key in orders[i]) {
+        if (orders[i].hasOwnProperty(key)) {
+          order[key] = orders[i][key];
+        }
+      }
+      order.productName = productsFactory.getProduct(order.productID).name;
+      order.customerName = customersFactory.getCustomer(order.customer).name;
+      $scope.ordersVM.push(order);
     }
     $scope.sendOrder = function(order){
       order.sent = true;
