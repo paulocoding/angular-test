@@ -23,9 +23,9 @@ table.spaced tr td {
   margin: 0;
   padding: 4px 8px; }
 
-.order-btn {
-  margin-top: 25px;
-  margin-left: 35px;
+.new-btn {
+  margin-top: 10px;
+  margin-bottom: 25px;
   font-size: 1.1em; }
 
 .pad-left {
@@ -36,8 +36,3 @@ table.spaced tr td {
 
 .well.well-light {
   background-color: #fff; }
-
-@media screen and (max-width: 991px) {
-  .order-btn {
-    margin-top: 5px;
-    margin-left: 0; } }
