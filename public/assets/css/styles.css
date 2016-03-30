@@ -36,3 +36,11 @@ table.spaced tr td {
 
 .well.well-light {
   background-color: #fff; }
+
+@media screen and (max-width: 668px) {
+  .hide-sm {
+    display: none; } }
+
+@media screen and (max-width: 600px) {
+  .hide-xs {
+    display: none; } }
