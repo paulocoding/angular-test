@@ -39,7 +39,8 @@
       $scope.ordersVM.push(order);
     }
     $scope.sendOrder = function(order){
-      order.sent = true;
+      ordersFactory.getOrder(order.orderNo).sent = true;
+      order.sent=true;
     };
   };
   OrdersListController.$inject = ['$scope', 'ordersFactory', 'customersFactory', 'productsFactory'];

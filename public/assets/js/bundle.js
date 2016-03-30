@@ -74,6 +74,14 @@ angular.module('ordersApp').config(function($routeProvider){
 		factory.getOrders = function(){
 			return orders;
 		};
+		factory.getOrder = function(id){
+			for (var i = 0; i<orders.length; i++){
+				if(orders[i].orderNo === id){
+					return orders[i];
+				}
+			}
+			return false;
+		};
 
 		factory.getNextOrderNo = function(){
 			return nextOrderNo;
@@ -87,7 +95,7 @@ angular.module('ordersApp').config(function($routeProvider){
 			newOrder.quantity = quantity;
 			newOrder.customer = customerID;
 			var today = new Date();
-			newOrder.date = today.getDate() + '-'+  today.getMonth() + '-' + (today.getYear() + 1900);
+			newOrder.date = today.getDate() + '-'+  (today.getMonth()+1) + '-' + (today.getYear() + 1900);
 			newOrder.sent = false;
 			orders.push(newOrder);
 		};
@@ -231,7 +239,8 @@ angular.module('ordersApp').config(function($routeProvider){
       $scope.ordersVM.push(order);
     }
     $scope.sendOrder = function(order){
-      order.sent = true;
+      ordersFactory.getOrder(order.orderNo).sent = true;
+      order.sent=true;
     };
   };
   OrdersListController.$inject = ['$scope', 'ordersFactory', 'customersFactory', 'productsFactory'];
