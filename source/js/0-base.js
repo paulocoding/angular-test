@@ -1,4 +1,4 @@
-angular.module('ordersApp', ['ngRoute']);
+angular.module('ordersApp', ['ngRoute','ngAnimate']);
 angular.module('ordersApp').config(function($routeProvider){
   $routeProvider
     .when('/',

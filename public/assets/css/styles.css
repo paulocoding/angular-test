@@ -44,3 +44,21 @@ table.spaced tr td {
 @media screen and (max-width: 600px) {
   .hide-xs {
     display: none; } }
+
+.animate.ng-enter, .animate.ng-leave {
+  -webkit-transition: 150ms ease-out all;
+  transition: 150ms ease-out all;
+  position: relative;
+  display: block; }
+
+.animate.ng-enter {
+  top: -16px;
+  opacity: 0.2; }
+
+.animate.ng-enter.ng-enter-active {
+  top: 0px;
+  opacity: 1; }
+
+.animate.ng-leave {
+  display: none;
+  opacity: 0; }
